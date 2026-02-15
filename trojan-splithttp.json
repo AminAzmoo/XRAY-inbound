@@ -1,0 +1,38 @@
+{
+  "tag": "TROJAN-SPLITHTTP-TLS",
+  "listen": "0.0.0.0",
+  "port": 2052,
+  "protocol": "trojan",
+  "settings": {
+    "clients": [],
+    "fallbacks": []
+  },
+  "streamSettings": {
+    "network": "splithttp",
+    "security": "tls",
+    "tlsSettings": {
+      "serverName": "",
+      "alpn": ["h2", "http/1.1"],
+      "minVersion": "1.2",
+      "certificates": [
+        {
+          "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
+          "keyFile": "/var/lib/marzban/certs/privkey.pem"
+        }
+      ]
+    },
+    "splithttpSettings": {
+      "path": "/trojan-splithttp",
+      "host": "",
+      "maxUploadSize": 1000000,
+      "maxConcurrentUploads": 10,
+      "minUploadIntervalMs": 20,
+      "maxRequestBodySize": 10485760
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls"],
+    "routeOnly": false
+  }
+}

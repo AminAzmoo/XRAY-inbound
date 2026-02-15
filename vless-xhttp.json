@@ -1,0 +1,40 @@
+{
+  "tag": "VLESS-XHTTP-TLS",
+  "listen": "0.0.0.0",
+  "port": 8444,
+  "protocol": "vless",
+  "settings": {
+    "clients": [],
+    "decryption": "none",
+    "fallbacks": []
+  },
+  "streamSettings": {
+    "network": "xhttp",
+    "security": "tls",
+    "tlsSettings": {
+      "serverName": "",
+      "alpn": ["h2", "http/1.1"],
+      "minVersion": "1.2",
+      "certificates": [
+        {
+          "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
+          "keyFile": "/var/lib/marzban/certs/privkey.pem"
+        }
+      ]
+    },
+    "xhttpSettings": {
+      "path": "/vless-xhttp",
+      "host": "",
+      "mode": "auto",
+      "extra": {
+        "noSSEHeader": false,
+        "heartbeatPeriod": 0
+      }
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls", "quic"],
+    "routeOnly": false
+  }
+}

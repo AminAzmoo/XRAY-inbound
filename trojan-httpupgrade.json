@@ -1,0 +1,36 @@
+{
+  "tag": "TROJAN-HTTPUPGRADE-TLS",
+  "listen": "0.0.0.0",
+  "port": 2053,
+  "protocol": "trojan",
+  "settings": {
+    "clients": [],
+    "fallbacks": []
+  },
+  "streamSettings": {
+    "network": "httpupgrade",
+    "security": "tls",
+    "tlsSettings": {
+      "serverName": "",
+      "alpn": ["http/1.1"],
+      "minVersion": "1.2",
+      "certificates": [
+        {
+          "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
+          "keyFile": "/var/lib/marzban/certs/privkey.pem"
+        }
+      ]
+    },
+    "httpupgradeSettings": {
+      "path": "/trojan-httpupgrade",
+      "host": "",
+      "maxEarlyData": 2048,
+      "earlyDataHeaderName": "Sec-WebSocket-Protocol"
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls"],
+    "routeOnly": false
+  }
+}

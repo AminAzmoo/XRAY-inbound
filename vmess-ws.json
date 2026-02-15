@@ -1,0 +1,36 @@
+{
+  "tag": "VMESS-WS-TLS",
+  "listen": "0.0.0.0",
+  "port": 8443,
+  "protocol": "vmess",
+  "settings": {
+    "clients": []
+  },
+  "streamSettings": {
+    "network": "ws",
+    "security": "tls",
+    "tlsSettings": {
+      "serverName": "",
+      "alpn": ["http/1.1"],
+      "minVersion": "1.2",
+      "certificates": [
+        {
+          "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
+          "keyFile": "/var/lib/marzban/certs/privkey.pem"
+        }
+      ]
+    },
+    "wsSettings": {
+      "path": "/vmess-ws",
+      "headers": { "Host": "" },
+      "maxEarlyData": 1024,
+      "earlyDataHeaderName": "Sec-WebSocket-Protocol",
+      "heartbeatPeriod": 30
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls"],
+    "routeOnly": false
+  }
+}

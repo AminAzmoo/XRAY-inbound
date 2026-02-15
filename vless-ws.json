@@ -1,0 +1,38 @@
+{
+  "tag": "VLESS-WS-TLS",
+  "listen": "0.0.0.0",
+  "port": 443,
+  "protocol": "vless",
+  "settings": {
+    "clients": [],
+    "decryption": "none",
+    "fallbacks": []
+  },
+  "streamSettings": {
+    "network": "ws",
+    "security": "tls",
+    "tlsSettings": {
+      "serverName": "",
+      "alpn": ["http/1.1", "h2"],
+      "minVersion": "1.2",
+      "certificates": [
+        {
+          "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
+          "keyFile": "/var/lib/marzban/certs/privkey.pem"
+        }
+      ]
+    },
+    "wsSettings": {
+      "path": "/vless-ws",
+      "headers": { "Host": "" },
+      "maxEarlyData": 2048,
+      "earlyDataHeaderName": "Sec-WebSocket-Protocol",
+      "heartbeatPeriod": 30
+    }
+  },
+  "sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls", "quic"],
+    "routeOnly": false
+  }
+}
